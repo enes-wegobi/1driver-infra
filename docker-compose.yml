@@ -62,27 +62,6 @@ services:
           cpus: '0.5'
     restart: unless-stopped
 
-  1driver-promotion-api:
-    build:
-      context: ../1driver-promotion-api
-      dockerfile: Dockerfile
-    ports:
-      - "${PROMOTION_API_PORT:-3002}:3000"
-    env_file:
-      - ../1driver-promotion-api/.env.docker
-    depends_on:
-      - mongo
-    networks:
-      - 1driver-network
-    volumes:
-      - ./logs/1driver-promotion-api:/app/logs
-    deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: '0.5'
-    restart: unless-stopped
-
 networks:
   1driver-network:
     driver: bridge
@@ -91,5 +70,4 @@ networks:
 volumes:
   mongo-data:
   1driver-main-api-logs:
-  1driver-promotion-api-logs:
   1driver-user-api-logs:

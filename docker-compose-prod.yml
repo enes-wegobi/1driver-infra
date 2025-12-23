@@ -85,27 +85,6 @@ services:
     labels:
       - "traefik.enable=false"
 
-  1driver-promotion-api:
-    build:
-      context: ../1drive-promotion-api
-      dockerfile: Dockerfile
-    expose:
-      - "3000"
-    env_file:
-      - ../1drive-promotion-api/.env
-    networks:
-      - 1driver-network
-    volumes:
-      - ./logs/1driver-promotion-api:/app/logs:rw
-    deploy:
-      resources:
-        limits:
-          memory: 745M
-          cpus: '0.36'
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=false"
-
 networks:
   1driver-network:
     driver: bridge
